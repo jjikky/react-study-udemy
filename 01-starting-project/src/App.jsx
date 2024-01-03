@@ -1,19 +1,62 @@
+import { CORE_CONCEPTS } from './data.js';
+import Header from './components/Header/Header.jsx';
+import CoreConcept from './components/CoreConcept.jsx';
+import TabButton from './components/TabButton.jsx';
+import { useState } from 'react';
+import { EXAMPLES } from './data.js';
 function App() {
-  return (
-    <div>
-      <header>
-        <img src="src/assets/react-core-concepts.png" alt="Stylized atom" />
-        <h1>React Essentials</h1>
-        <p>
-          Fundamental React concepts you will need for almost any app you are
-          going to build!
-        </p>
-      </header>
-      <main>
-        <h2>Time to get started!</h2>
-      </main>
-    </div>
-  );
+	const [selectedTopic, setSelectedTopic] = useState('');
+	const handleSelect = (selectedButton) => {
+		setSelectedTopic(selectedButton);
+	};
+	let tabContent = '<p>Please select a topic.</p>';
+	if (selectedTopic) {
+		tabContent = (
+			<div id='tab-content'>
+				<h3>{EXAMPLES[selectedTopic].title}</h3>
+				<p>{EXAMPLES[selectedTopic].description}</p>
+				<pre>
+					<code>{EXAMPLES[selectedTopic].code}</code>
+				</pre>
+			</div>
+		);
+	}
+	return (
+		<div>
+			<Header />
+			<main>
+				<section id='core-concepts'>
+					<h2>Core Concepts</h2>
+					<ul>
+						{CORE_CONCEPTS.map((data, index) => (
+							<CoreConcept key={index} {...data} />
+						))}
+					</ul>
+				</section>
+				<section id='examples'>
+					<h2>examples</h2>
+					<menu>
+						<TabButton
+							isSelected={selectedTopic === 'components'}
+							onSelect={() => handleSelect('components')}
+						>
+							Components
+						</TabButton>
+						<TabButton isSelected={selectedTopic === 'jsx'} onSelect={() => handleSelect('jsx')}>
+							JSX
+						</TabButton>
+						<TabButton isSelected={selectedTopic === 'props'} onSelect={() => handleSelect('props')}>
+							Props
+						</TabButton>
+						<TabButton isSelected={selectedTopic === 'state'} onSelect={() => handleSelect('state')}>
+							State
+						</TabButton>
+					</menu>
+					{tabContent}
+				</section>
+			</main>
+		</div>
+	);
 }
 
 export default App;
