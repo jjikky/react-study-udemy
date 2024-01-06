@@ -3,7 +3,7 @@ export default function UserInput({ userInput, onChange }) {
     <section id="user-input">
       <div className="input-group">
         <p>
-          <labeL>Initial Investment</labeL>
+          <label>Initial Investment</label>
           <input
             type="number"
             required
@@ -14,7 +14,7 @@ export default function UserInput({ userInput, onChange }) {
           />
         </p>
         <p>
-          <labeL>Annual Investment</labeL>
+          <label>Annual Investment</label>
           <input
             type="number"
             required
@@ -27,7 +27,7 @@ export default function UserInput({ userInput, onChange }) {
       </div>
       <div className="input-group">
         <p>
-          <labeL>Expected Return</labeL>
+          <label>Expected Return</label>
           <input
             type="number"
             required
@@ -36,7 +36,7 @@ export default function UserInput({ userInput, onChange }) {
           />
         </p>
         <p>
-          <labeL>Duration</labeL>
+          <label>Duration</label>
           <input
             type="number"
             required
